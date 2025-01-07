@@ -10,21 +10,21 @@ class Command(BaseCommand):
         #cria um departamento geral
         departamento, created = Departamento.objects.get_or_create(nome='Geral', sigla='GERAL')
         if created:
-            self.success.write(self.style.SUCCESS(f'Departamento criado: {departamento.nome}'))
+            self.stdout.write(self.style.SUCCESS(f'Departamento criado: {departamento.nome}'))
             #aparece no console departamento criado, esse SUCCESS é o layout verde bonitinho que criou
 
         #cria os perfis de usuario
         perfil_administrador, created = Perfil.objects.get_or_create(id=1, nome='Administrador')
         if created:
-            self.success.write(self.style.SUCCESS(f'Perfil criado: {perfil_administrador.nome}'))
+            self.stdout.write(self.style.SUCCESS(f'Perfil criado: {perfil_administrador.nome}'))
 
         pefil_estoquista, created = Perfil.objects.get_or_create(id=2, nome='Estoquista')
         if created:
-            self.success.write(self.style.SUCCESS(f'Perfil criado: {pefil_estoquista.nome}'))
+            self.stdout.write(self.style.SUCCESS(f'Perfil criado: {pefil_estoquista.nome}'))
 
         pefil_vendedor, created = Perfil.objects.get_or_create(id=3, nome='Vendedor')
         if created:
-            self.success.write(self.style.SUCCESS(f'Perfil criado: {pefil_vendedor.nome}'))
+            self.stdout.write(self.style.SUCCESS(f'Perfil criado: {pefil_vendedor.nome}'))
 
         #cria o usuario administrador principal do sistema
         User = get_user_model()

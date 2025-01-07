@@ -82,9 +82,9 @@ TEMPLATES = [
 ]
 
 #URL de redirecionamento apos login
-LOGIN_REDIRECT_URL = 'core:main'
-LOGOUT_REDIRECT_URL = 'autenticacao:login'
-LOGIN_URL = 'autenticacao:login'
+LOGIN_REDIRECT_URL = 'core:main'#quando faz login
+LOGOUT_REDIRECT_URL = 'autenticacao:login'#quando da logout
+LOGIN_URL = 'autenticacao:login'#entra pela primeira vez
 
 WSGI_APPLICATION = "config.wsgi.application"
 
