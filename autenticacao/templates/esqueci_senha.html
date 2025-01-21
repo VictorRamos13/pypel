@@ -8,39 +8,37 @@
         <div class="form-group">
             <label for="txtEmail">E-mail</label>
             <input type="email" class="form-control" id="txtEmail" name="txtEmail" required autocomplete="off">
-            <div id="divEmailError" class="error-message"> </div>
         </div>
 
-        <div class="form-group" id="divSenha">
+        <div class="form-group" id="divSenha1">
             <label for="txtNovaSenha">Senha</label>
             <input type="password" class="form-control" id="txtNovaSenha" name="txtNovaSenha" required>
         </div>
 
-        <div class="form-group" id="divSenha">
+        <div class="form-group" id="divSenha2">
             <label for="txtNovaSenha2">Confirme sua senha</label>
             <input type="password" class="form-control" id="txtNovaSenha2" name="txtNovaSenha2" required>
+            <div id="divSenhaError" style="display: none;">As senhas não coincidem.</div>
         </div>
         <div id="divSpace" class="space"> </div>
         <button type="submit" class="btn btn-light">Enviar</button>
-        
     </form>
 </div>
 
-{% comment %} <script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('redefSenha').addEventListener('submit', function(event) {
+        const senha1 = document.getElementById('txtNovaSenha').value;
+        const senha2 = document.getElementById('txtNovaSenha2').value;
+        const mensagemErro = document.getElementById('divSenhaError');
 
-    $(document).ready(function() {
-        $('#redefSenha').submit(function(event) {
-          var newPassword = $('#txtNovaSenha').val();
-          var confirmPassword = $('#txtNovaSenha2').val();
-  
-          // Verifica se as senhas são iguais
-          if (newPassword != confirmPassword) {
-            event.preventDefault();  // Impede o envio do formulário
-            alert("As senhas não coincidem. Tente novamente.");
-          }
-        });
-      });
+        if (senha1 !== senha2) {
+            event.preventDefault();//impede o envio do formulário
+            mensagemErro.style.display = 'block';
+            mensagemErro.style.color = 'red';
+        } 
+    });
+});
+</script>
 
-</script> {% endcomment %}
 {% endblock %}
-
