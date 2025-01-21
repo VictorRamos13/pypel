@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required #as flag estao dentro de decorators
+from django.contrib.auth.decorators import login_required
 
-@login_required #isso aqui garante que a pessoa tem que estar logada
+@login_required #so executa a funcao se o cara estiver logado
 def main(request):
     return render(request, "main.html")

@@ -1,0 +1,16 @@
+1) baixar os recursos do AVA
+2) no app cadastros criar o arquivo backends.py e inserir as funções de backend de autenticação
+
+3) criar no app core o arquivo urls.py e adicionar o path para a main
+4) implementar o arquivo views.py no app core
+5) checar o core:main no settings.py
+6) incluir no app config no arquivo urls.py o path include para as urls do app core
+
+7) criar no app autenticacao no arquivo urls.py as 3 rotas
+8) implementar o arquivo views.py no app autenticacao
+
+9) criar a index.html dentro da pasta templates de core
+10) criar a login.html dentro da pasta templates de autenticacao
+
+11) criar a master.html dentro da pasta templates de core
+12) criar a main.html dentro da pasta templates de core

@@ -13,8 +13,7 @@ class Departamento(models.Model):
                 self
             )
         super().delete(*args, **kwargs)
-    
-    #retorna o nome da classe se ela for chamada
+        
     def __str__(self):
         return self.nome
 
@@ -69,9 +68,10 @@ class Usuario(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    @property#retorna se o usuario é adm
+    @property
     def is_staff(self):
         return self.is_admin
 
-    def tem_perfil(self, perfil_nome): #retorna se tem perfil
+    def tem_perfil(self, perfil_nome):
         return self.perfis.filter(nome=perfil_nome).exists()
+

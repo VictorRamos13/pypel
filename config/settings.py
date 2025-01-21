@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os #importa do sistema operacional (operational system)
-from django.contrib.messages import constants as messages #controle de mensagens
+
+import os
+from django.contrib.messages import constants as messages
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-is=p2zoe&vjk=v*9xrf6s2xetc%al_r4xw^t5b5cly#*xfzj4k"
+SECRET_KEY = "django-insecure-qk1k%1_f604q40uifu=8825p7&gi^2vugoedco)48mnn17r44_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -64,11 +65,11 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  #backend de autenticacao padrao
 ]
 
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "resources")], 
-        #define o caminho da pasta que tera os recursos usados pelos templates
+        "DIRS": [os.path.join(BASE_DIR, "resources")], #define o caminho da pasta que tera os recursos usados pelos templates
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,9 +83,9 @@ TEMPLATES = [
 ]
 
 #URL de redirecionamento apos login
-LOGIN_REDIRECT_URL = 'core:main'#quando faz login
-LOGOUT_REDIRECT_URL = 'autenticacao:login'#quando da logout
-LOGIN_URL = 'autenticacao:login'#entra pela primeira vez
+LOGIN_REDIRECT_URL = 'core:main'
+LOGOUT_REDIRECT_URL = 'autenticacao:login'
+LOGIN_URL = 'autenticacao:login'
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -111,7 +112,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -165,3 +165,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #Configurações de variáveis globais
 NUMBER_GRID_PAGES = 3
 NUMBER_GRID_MODAL = 3
+

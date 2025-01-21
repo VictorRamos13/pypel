@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block conteudo %}
+<div class="container">
+    <h2>Esqueci minha senha</h2>
+    <form method="POST" action="{% url 'autenticacao:esqueci_senha' %}" id="redefSenha">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="txtEmail">E-mail</label>
+            <input type="email" class="form-control" id="txtEmail" name="txtEmail" required autocomplete="off">
+            <div id="divEmailError" class="error-message"> </div>
+        </div>
+
+        <div class="form-group" id="divSenha">
+            <label for="txtNovaSenha">Senha</label>
+            <input type="password" class="form-control" id="txtNovaSenha" name="txtNovaSenha" required>
+        </div>
+
+        <div class="form-group" id="divSenha">
+            <label for="txtNovaSenha2">Confirme sua senha</label>
+            <input type="password" class="form-control" id="txtNovaSenha2" name="txtNovaSenha2" required>
+        </div>
+        <div id="divSpace" class="space"> </div>
+        <button type="submit" class="btn btn-light">Enviar</button>
+        
+    </form>
+</div>
+
+{% comment %} <script>
+
+    $(document).ready(function() {
+        $('#redefSenha').submit(function(event) {
+          var newPassword = $('#txtNovaSenha').val();
+          var confirmPassword = $('#txtNovaSenha2').val();
+  
+          // Verifica se as senhas são iguais
+          if (newPassword != confirmPassword) {
+            event.preventDefault();  // Impede o envio do formulário
+            alert("As senhas não coincidem. Tente novamente.");
+          }
+        });
+      });
+
+</script> {% endcomment %}
+{% endblock %}
+

@@ -1,5 +1,5 @@
-{%load static%}
 {% extends 'index.html' %}
+
 {% block conteudo %}
 <div class="container">
     <h2>Login</h2>
@@ -20,7 +20,7 @@
         </div>
         <div id="divSpace" class="space"> </div>
         <button type="submit" class="btn btn-light">Entrar</button>
-        <a href="#" id="btnEsqueciSenha" class="btn btn-light">Esqueci minha senha</a>
+        <a href="{% url 'autenticacao:esqueci_senha' %}" id="btnEsqueciSenha" class="btn btn-light">Esqueci minha senha</a>
     </form>
 </div>
 
@@ -57,10 +57,10 @@
             }
         });
 
-        $('#btnEsqueciSenha').click(function(event) {
-            event.preventDefault();
-            toastr.info('Se você esqueceu sua senha contate o administrador do sistema.');
-        });
+        //$('#btnEsqueciSenha').click(function(event) {
+        //    event.preventDefault();
+        //    toastr.info('Se você esqueceu sua senha contate o administrador do sistema.');
+        //});
     });
 </script>
 {% endblock %}
