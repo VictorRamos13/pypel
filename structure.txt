@@ -1,0 +1,139 @@
+.
+├── autenticacao
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   ├── esqueci_senha.html
+│   │   └── login.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── cadastros
+│   ├── admin.py
+│   ├── apps.py
+│   ├── backends.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── config
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── middleware.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── core
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   ├── index.html
+│   │   ├── main.html
+│   │   └── master.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── install.txt
+├── manage.py
+├── resources
+│   └── static
+│       ├── css
+│       │   ├── bootstrap.min.css
+│       │   ├── crud.css
+│       │   ├── index.css
+│       │   ├── main.css
+│       │   └── toastr.min.css
+│       ├── img
+│       │   ├── active.png
+│       │   ├── admin.png
+│       │   ├── background.png
+│       │   ├── back.png
+│       │   ├── bloom.png
+│       │   ├── closed_eye.png
+│       │   ├── coordenator.png
+│       │   ├── create.png
+│       │   ├── creativecommons.png
+│       │   ├── danger.png
+│       │   ├── delete_disabled.png
+│       │   ├── delete.png
+│       │   ├── django.png
+│       │   ├── favicon.png
+│       │   ├── github.png
+│       │   ├── info.png
+│       │   ├── logo.png
+│       │   ├── my_bibs.png
+│       │   ├── my_file.png
+│       │   ├── my_logout.png
+│       │   ├── my_save.png
+│       │   ├── my_sillabus.png
+│       │   ├── my_user.png
+│       │   ├── new_bib.png
+│       │   ├── new_content.png
+│       │   ├── new_coord.png
+│       │   ├── new_editor.png
+│       │   ├── new_req.png
+│       │   ├── new_rule.png
+│       │   ├── opened_eye.png
+│       │   ├── open.png
+│       │   ├── postgresql.png
+│       │   ├── python.png
+│       │   ├── rel_eixos.png
+│       │   ├── rel_ementario_completo.png
+│       │   ├── rel_ementario_disciplina.png
+│       │   ├── rel_guias.png
+│       │   ├── rel_jpg.ico
+│       │   ├── rel_latex.png
+│       │   ├── rel_matriz.png
+│       │   ├── rel_perfil_grafico.png
+│       │   ├── rel_png.png
+│       │   ├── rel_print.png
+│       │   ├── rel_word.png
+│       │   ├── rel_zadd.png
+│       │   ├── rel_zsub.png
+│       │   ├── save.png
+│       │   ├── search.png
+│       │   ├── status_green.png
+│       │   ├── status_red.png
+│       │   ├── status_yellow.png
+│       │   ├── update.png
+│       │   └── users.png
+│       └── js
+│           ├── bootstrap.min.js
+│           ├── cytoscape-dagre.min.js
+│           ├── cytoscape.min.js
+│           ├── dagre.min.js
+│           ├── html-docx.min.js
+│           ├── jquery-3.5.1.min.js
+│           ├── popper.min.js
+│           └── toastr.min.js
+├── _roteiro.txt
+├── sistema
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── management
+│   │   └── commands
+│   │       ├── inicializa_sistema.py
+│   │       ├── limpa_banco.py
+│   │       ├── reseta_dados_admin.py
+│   │       └── reseta_sistema.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── structure.txt
+└── version.txt
+
+18 directories, 118 files

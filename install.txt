@@ -24,5 +24,18 @@ python manage.py makemigrations
 pythonn manage.py migrate
 python manage.py inicializa_sistema
 
+PARA ATUALIZAR O ARQUIVO structure.txt:
+DEBIAN/UBUNTU:
+sudo apt install tree  # Debian/Ubuntu
+
+MAC (com brew):
+brew install tree
+
+WINDOWS (chocolatey):
+choco install tree
+
+Depois:
+tree --prune -I 'node_modules|__pycache__|.*|.git*' > structure.txt
+
 EXECUÇÃO
 python manage.py runserver
