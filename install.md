@@ -1,0 +1,40 @@
+# INSTRUÇÕES DE INSTALAÇÃO DO PYPEL
+
+## IMPORTANTE: Tanto para Linux quanto para Windows é obrigatório o uso da distribuição Anaconda para a configuração dos ambientes virtuais. Baixe a última versão em anaconda.org.
+
+### BANCO DE DADOS:
+1. Instalar o PostgreSQL 16 ou superior.
+2. Criar um banco de dados chamado 'db_pypel' com:
+CREATE DATABASE db_pypel;
+
+### AMBIENTE:
+1. Instalar o Python 3.11.9.
+2. Criar um ambiente virtual chamado 'pypel' com essa versão do Python:
+conda create --name pypel python=3.11.9
+3. Ative o ambiente com:
+conda activate pypel
+4. Instalar o Django, dentro do ambiente virtual criado, com a versão 4.1 com:
+pip install django==4.1
+5. Instalar o drive de conexão com o PostgreSQL com:
+pip install psycopg2
+6. Acesse a pasta do pypel via terminal.
+7. Dar os seguintes comandos no terminal:
+python manage.py makemigrations
+pythonn manage.py migrate
+python manage.py inicializa_sistema
+
+### PARA ATUALIZAR O ARQUIVO structure.txt:
+DEBIAN/UBUNTU:
+sudo apt install tree  # Debian/Ubuntu
+
+MAC (com brew):
+brew install tree
+
+WINDOWS (chocolatey):
+choco install tree
+
+Depois:
+tree --prune -I 'node_modules|__pycache__|.*|.git*' > structure.txt
+
+### EXECUÇÃO
+python manage.py runserver
