@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.http import JsonResponse
@@ -78,8 +78,8 @@ def esqueci_senha(request):
         senha = request.POST.get('txtNovaSenha')
 
         try:
-            #busca o email no banco
-            usuario = get_user_model().objects.get(email=email)
+            #busca o email no banco, "select por email"
+            usuario = Usuario.objects.get(email=email)
             
             #se encontrar redefine a senha
             usuario.set_password(senha)
@@ -89,7 +89,7 @@ def esqueci_senha(request):
             return redirect('autenticacao:login')
         
         #pega o erro e trata ele exibindo na tela isso ai
-        except get_user_model().DoesNotExist: 
+        except Usuario().DoesNotExist: 
             messages.error(request, "Esse e-mail não está registrado.")
             
         
