@@ -1,0 +1,53 @@
+{% extends 'master.html' %}
+{% load static %} {% comment %} carrega a pasta static (imagens, css e js) {% endcomment %}
+
+{% block conteudo %}
+
+<br>
+
+<div class="container">
+    <div class="form-group row align-items-center mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-5 font-weight-bold">
+                Cadastro de Departamentos
+            </h1>
+            <hr class="mt-2 mb-3 border-primary">
+        </div>
+    </div>
+
+    <fieldset class="fieldset-custom">
+        <legend>
+            {% if page_obj.paginator.count == 0 %}
+                Nenhum registro encontrado
+            {% elif page_obj.paginator.count == 1 %}
+                1 registro encontrado
+            {% else %}
+                {{ page_obj.paginator.count }} registros encontrados
+            {% endif %}
+        </legend>
+
+        <div class="form-group row align-items-center">
+            <div class="col-auto">
+                <img src="{% static 'img/search.png' %}" width="20px" height="20px" alt="Pesquisar">
+            </div>
+            <div class="text-left">
+                <label for="txtBuscaNome" class="col-form-label">Pesquisar por nome:</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="txtBuscaNome" 
+                placeholder="Digite o nome do departamento" value="{{ query }}">
+            </div>
+        </div>
+
+        <div id="departamentos-table">
+            {% include 'departamentos_table.html' %}
+        </div>
+    </fieldset>
+
+    <hr>
+
+    CONTINUAR DAQUI...
+
+</div>
+
+{% endblock %}

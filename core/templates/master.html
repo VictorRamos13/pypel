@@ -23,28 +23,81 @@
     <div class="flex-wrapper">
         <header id="menu_navegacao">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-                {% if request.session.perfil_atual == 'Administrador' or request.session.perfil_atual == 'Estoquista' or request.session.perfil_atual == 'Vendedor' %}
                 <a class="navbar-brand" href="{% url 'core:main' %}">HOME</a>
-                {% endif %}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                {% comment %} ARQUIVOS TODOS VEEM {% endcomment %}
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        {% if request.session.perfil_atual == 'Administrador' %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                MENU EXEMPLO
+                                <img src="{% static 'img/my_file.png' %}" width="20px" alt="Arquivo">
+                                ARQUIVO
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
-                                <a class="dropdown-item" href="#">ITEM 1</a>
-                                <a class="dropdown-item" href="#">ITEM 2</a>
-                                <a class="dropdown-item" href="#">ITEM 3</a>
+                                <a class="dropdown-item" href="#">Meus dados</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'autenticacao:logout' %}">
                                     <img src="{% static 'img/my_logout.png' %}" width="20px" alt="Logout">
                                     Sair
                                 </a>
+                            </div>
+                        </li>
+
+                        {% comment %} PESSOAL SO ADM VE {% endcomment %}
+                        {% if request.session.perfil_atual == 'Administrador' %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                PESSOAL
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                <a class="dropdown-item" href="{% url 'cadastros:departamentos' %}">Departamentos</a>
+                                <a class="dropdown-item" href="#"> 
+                                    <img src="{% static 'img/users.png' %}" width="20px "alt="Usuarios">
+                                    Usuários
+                                </a>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% comment %} ESTOQUE SO ADM E ESTOQUISTA VE {% endcomment %}
+                        {% if request.session.perfil_atual == 'Estoquista' or request.session.perfil_atual == 'Administrador' %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ESTOQUE
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                <a class="dropdown-item" href="#">Produtos</a>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% comment %} VENDAS SO ADM E VENDEDOR VE {% endcomment %}
+                        {% if request.session.perfil_atual == 'Vendedor' or request.session.perfil_atual == 'Administrador' %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                VENDAS
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                <a class="dropdown-item" href="#">Vendas</a>
+                            </div>
+                        </li>
+                        {% endif %}
+                        
+                        {% comment %} RELATORIOS SO ADM VE {% endcomment %}
+                        {% if request.session.perfil_atual == 'Administrador' %}
+                        <li class="nav-item dropdown">
+                            
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                RELATÓRIOS
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
+                                <a class="dropdown-item" href="#">Lista de Usuários</a>
+                                
+                                <a class="dropdown-item" href="#">Balanço</a>
+                                <a class="dropdown-item" href="#">Contabilidade</a>
                             </div>
                         </li>
                         {% endif %}

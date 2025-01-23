@@ -166,10 +166,3 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 NUMBER_GRID_PAGES = 3
 NUMBER_GRID_MODAL = 3
 
-#configuração do email
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "victorhordonesramos38@gmail.com"
-EMAIL_HOST_PASSWORD = "qocq dzlx phby qufx"

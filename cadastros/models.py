@@ -5,7 +5,8 @@ from django.db.models.deletion import ProtectedError
 class Departamento(models.Model):
     nome = models.CharField(max_length=500)
     sigla = models.CharField(max_length=30)
-    
+
+    #protege contra o delete cascade
     def delete(self, *args, **kwargs):
         if self.usuario_set.exists():
             raise ProtectedError(
@@ -31,6 +32,7 @@ class Perfil(models.Model):
     def __str__(self):
         return self.nome
     
+#sobrescrita do metodo padrao do django
 class UsuarioManager(BaseUserManager):
     def create_user(self, email, nome, password=None):
         if not email:
@@ -51,7 +53,9 @@ class Usuario(AbstractBaseUser):
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    #chave estrangeira
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT)
+    #chave estrangeira
     perfis = models.ManyToManyField(Perfil)
 
     objects = UsuarioManager()
