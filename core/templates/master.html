@@ -49,7 +49,9 @@
                         {% comment %} PESSOAL SO ADM VE {% endcomment %}
                         {% if request.session.perfil_atual == 'Administrador' %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo"
+                               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               <img src="{% static 'img/my_user.png' %}" width="20px" alt="Pessoal">
                                 PESSOAL
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
@@ -66,6 +68,7 @@
                         {% if request.session.perfil_atual == 'Estoquista' or request.session.perfil_atual == 'Administrador' %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{% static 'img/estoque.png' %}" width="20px" alt="Estoque">
                                 ESTOQUE
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
@@ -78,6 +81,7 @@
                         {% if request.session.perfil_atual == 'Vendedor' or request.session.perfil_atual == 'Administrador' %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{% static 'img/crescimento.png' %}" width="20px" alt="Vendas">
                                 VENDAS
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">
@@ -91,6 +95,7 @@
                         <li class="nav-item dropdown">
                             
                             <a class="nav-link dropdown-toggle" href="#" id="navbarMenuExemplo" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{% static 'img/my_sillabus.png' %}" width="20px" alt="Vendas">
                                 RELATÓRIOS
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarMenuExemplo">

@@ -44,10 +44,208 @@
         </div>
     </fieldset>
 
-    <hr>
+    <hr> 
 
-    CONTINUAR DAQUI...
+    <fieldset class="fieldset-custom">
+        <legend id="formLegend">Novo departamento</legend>
 
+        <form class="needs-validation" method="POST" action="{% url 'cadastros:departamentos' %}" novalidate>
+
+            {% comment %}  gera um token no formulario e é comparado com um token do back-end, garante a segurança {% endcomment %}
+            {% csrf_token %}
+
+            <!-- codigo -->
+            <input type="hidden" name="txtId" id="txtId" value=""><!-- pega o id do departamento -->
+
+            <!-- nome -->
+            <div class="form-group row algin-items-center has-validation">
+                <label class="col-sm-2 col-form-label text-left" for="txtName">Nome:</label>
+                <!-- a div debaixo vai ocupar o resto da tela -->
+                <div class="col-sm-10">
+                    <input type="text" class="from-control" name="txtName" 
+                            id="txtName" value="" placeholder="Digite o nome" required>
+                    <div class="invalid-feedback text-left"><!-- só aparece se não preencher o nome quando da submit -->
+                        O nome é um campo obrigatório!
+                    </div>
+                </div>
+            </div>
+
+            <!-- sigla -->
+            <div class="form-group row algin-items-center has-validation">
+                <label class="col-sm-2 col-form-label text-left" for="txtSigla">Sigla:</label>
+                <!-- a div debaixo vai ocupar o resto da tela -->
+                <div class="col-sm-10">
+                    <input type="text" class="from-control" name="txtSigla" 
+                            id="txtSigla" value="" placeholder="Digite a sigla" 
+                            maxlength="5" required>
+                    <div class="invalid-feedback text-left"><!-- só aparece se não preencher o nome quando da submit -->
+                        A sigla é um campo obrigatória!
+                    </div>
+                </div>
+            </div>
+
+            <!-- ações -->
+             <div class="form-group row align-items-center">
+                <div class="col-sm-12 text-right">
+                    
+                    <a href="{% url 'cadastros:departamentos' %}" class="btn btn-info" id="btnNovoDepartamento" 
+                       style="display:none;">
+                        <img src="{% static 'img/create.png' %}" width="20px" height="20px" 
+                        alt="voltar ao modo de inclusão">
+                        Voltar ao modo de inclusão
+                    </a>
+
+                    <button type="submit" class="btn btn-primary" name="btnAcao" 
+                            id="btnAcao" value="novo_departamento">
+                        Salvar
+                    </button>
+                </div>
+             </div>
+
+        </form>
+    </fieldset>
 </div>
+
+<!-- janela de confirmacao de exclusao (o modal de quando aperta para excluir) -->
+ <div class="modal fade" id="jnlExcluir" tabindex="-1" role="dialog"
+      aria-labelledby="jnlExcluirRotulo" aria-hidden="true">
+    
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jnlExcluirRotulo">Confirmação de exclusão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Tem certeza que deseja excluir esse departamento?</h5>
+            </div>
+            <div class="modal-footer"> <!-- data-dismiss = do proprio bootstrap para cancelar o modal -->
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="jnlExcluirBtnExcluir">Excluir</button>
+            </div>
+        </div>
+      </div>
+    
+ </div>
+
+<!-- scripts esepcificos do cadastro de departamentos -->
+<script>
+
+    //funcao para carregar os dados do departamento no formulario
+    //integracao do front com back
+    function carregaDadosDepartamento(pDepartamento_id){
+
+        //a rota que vai para acessar o back-end
+        //javascript assincrono por xml - ajax que sincroniza com o xml (arquivo estruturado - Json por exemplo)
+        $.ajax({
+            //URL = quero acessar essa url
+            //METHOD = vou acessar usando esse metodo
+            //DATA = vou passar esses dados
+            //SUCCESS = mensagem que deu certo
+            url: '{% url "cadastros:obter_departamento_por_id" %}',
+            data: {
+                departamento_id: pDepartamento_id
+            },
+            dataType: 'json',
+            success: function(pDepartamento_dados){
+                $('#txtId').val(pDepartamento_dados.id);
+                $('#txtName').val(pDepartamento_dados.nome);
+                $('#txtSigla').val(pDepartamento_dados.sigla);
+
+                $('#formLegend').text('Alterar departamento');
+                $('#btnAcao').text('Alterar departamento').val('alterar_departamento');
+                $('#btnNovoDepartamento').show();
+            }
+        });
+    }
+
+    //click na linha do grid
+    function clickNoGrid(){
+
+        $('.departamento-row').click( function(){ 
+
+            //tira a classe de todas as linhas e coloca so naquela que esta clicada (this)
+            $('.departamento-row').removeClass('table-primary table-bordered');
+            $(this).addClass('table-primary table-bordered');
+
+            var departamento_id = $(this).data('id');
+            carregaDadosDepartamento(departamento_id);
+
+            //codigo para mostrar o modal da tabela de confirmacao
+            $('.delete-btn').click( function(){
+                apagarDepartamentoPorID = $(this).data('id');
+                $('#jnlExcluir').modal('show');
+
+            });
+        });
+    }
+
+    $('#jnlExcluirBtnExcluir').click(function(){
+         $.ajax({
+            url: '{% url "cadastros:excluir_departamento" %}',
+            method: 'POST',
+            data: {
+                //o que leva para o back-end -> request.POST.get(departamento_id)
+                'departamento_id': apagarDepartamentoPorID,
+                csrfmiddlewaretoken: '{{csrf_token}}'
+            },
+            success: function(response){
+                if (response.success){
+                    //mensagem
+                    toastr.success(response.messages);
+                    location.reload();
+                } else {
+                    toastr.error(response.messages)
+                }
+            }
+         });
+    });
+
+    //buscar departamentos no banco pro nome e pelo buscador la da lupa
+    function filtraDepartamentoPorNome(){
+        let departamento_nome = $('#txtBuscaNome').val();
+        $.ajax({
+            url: '{% url "cadastros:pesquisar_departamento_por_nome" %}',
+            data: {'departamento_nome': departamento_nome},
+            success: function(data){
+                //o data é o departamentos_table.html atualizada com os dados que ta na view
+                $('#departamentos-table').html(data.html);
+                clickNoGrid();
+            }
+        });
+    }
+
+    //evento input na caixa de busca nome
+    $('#txtBuscaNome').on('input', function(){
+        filtraDepartamentoPorNome();
+    });
+
+    //funcao que carrega as funcoes e eventos da pagina
+    $('document').ready(function() {
+        
+        //anexa o evento de click ao gridclo
+        clickNoGrid();
+
+        (() => {
+            'use strict'
+            //carrega os formularios do bootstrap que tem validacao customizada
+            const forms = document.querySelectorAll('.needs-validation')
+            //loop nesses formularios para evitar o envio do formulário se ele nao for valido
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })();
+
+    });
+
+</script>
 
 {% endblock %}
